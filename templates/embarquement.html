@@ -9,17 +9,27 @@
 
 <form method="POST" id="form_1">
     <div class="form-example">
-        <label for="passportid">N° passeport: </label>
-        <input type="text" name="passeportid" id="passportid" required/>
+        <label for="passeportid">N° passeport: </label>
+        <input type="text" name="passeportid" id="passeportid" required/>
     </div>
 
     <div>
-        <button type="submit" id='btn1' name="button_save">Enregistrer</button>
-        <button type="submit" id='btn2' name="button_cancel">Annuler</button>
+        <button type="submit" id='btn1' name="btn1">Enregistrer</button>
+        <button type="submit" id='btn2' name="btn2">Annuler</button>
 
     </div>
 </form>
 
+<h1> Liste des personnes embarqués</h1>
+
+{% if embarque %}
+
+    {% for qqun in embarque %}
+        <p>n° passeport: {{qqun['passeportid'] }}<br>
+        <p> nom du passager: {{ usager}}</p>
+
+    {% endfor %}
+{% endif %}
 
 </body>
 </html>

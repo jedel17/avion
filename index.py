@@ -14,23 +14,16 @@ def page_index ():
 def page_cdbord():
     return render_template('cdbord.html',personnes=liste)
 
-@app.route('/embarquement')
+@app.route('/embarquement', methods=['GET', 'POST'])
 def page_embarquement():
-    global passagers
     if request.method == 'POST':
-        formulaire = request.form.to_dict()
-        passeport_found = False
+        global passagers
+        data = request.form.to_dict()
+        if 'btn1' in data:
+            passagers.append(data)
+            print(data)
+    return render_template('embarquement.html',embarque=passagers)
 
-        for passager in passagers:  # on parcours la liste des passagers
-            if passager['passeport'] == formulaire['passeportid']:  # si on trouve le passeport
-                passager['boarding'] = True  # le passager a embarqué
-                passeport_found = True  # on a trouvé le passeport
-
-        if passeport_found == True:  # si on atrouvé le passeport
-            return redirect(url_for('page_index'))  # on redirige vers la page d'acceuil
-        else:
-            return redirect(url_for('page_passeportintrouvable'))  # sinon on redirige vers l'erreur passeport
-    return render_template('embarquement.html')
 
 @app.route('/bagages', methods=['GET', 'POST'])
 def page_bagages():
