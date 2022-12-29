@@ -4,6 +4,7 @@ app = Flask (__name__)
 
 passagers = []
 liste=[]
+embarque=[]
 
 
 @app.route('/')
@@ -12,7 +13,7 @@ def page_index ():
 
 @app.route('/cdbord')
 def page_cdbord():
-    return render_template('cdbord.html',personnes=liste)
+    return render_template('cdbord.html',personnes=liste,data2=passagers)
 
 @app.route('/embarquement', methods=['GET', 'POST'])
 def page_embarquement():
@@ -21,8 +22,10 @@ def page_embarquement():
         data = request.form.to_dict()
         if 'btn1' in data:
             passagers.append(data)
-            print(data)
-    return render_template('embarquement.html',embarque=passagers)
+            print(passagers)
+            return redirect(url_for('page_cdbord'))
+            return render_template('cdbord.html')
+    return render_template('embarquement.html')
 
 
 @app.route('/bagages', methods=['GET', 'POST'])
@@ -32,7 +35,7 @@ def page_bagages():
         data = request.form.to_dict()  # decode les donnees du formulaire html dans un dictionnaire
         if 'button_save' in data:
             liste.append(data)
-            print(data)
+            print(liste)
         # redirige vers la page commandant de bord
         return redirect(url_for('page_cdbord'))
     return render_template('bagages.html')

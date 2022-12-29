@@ -8,17 +8,27 @@
 <body>
 
 
-<h2>Liste des personnes</h2>
+<h2>Liste des personnes enregistrées</h2>
 {% if personnes %}
     {% for qqun in personnes %}
         <p>n° passeport: {{qqun['passeportid'] }}<br>
             nom du passager: {{ qqun['name']}}<br>
             prénom du passager: {{ qqun['firstname'] }}<br>
-            poids du bagage: {{ qqun['poid'] }}<br></p>
+            poids du bagage: {{ qqun['poid'] }}<br>
+
 
     {% endfor %}
 {% endif %}
 
+<h2> Liste des personnes embarquées</h2><br><br>
+
+{% if data2 %}
+    {% for individu in data2 %}
+        n° passeport: {{individu['passeportid']}},a embarque
+    {% endfor %}
+{% endif %}
+
+<br>
 <a class="lien" href={{url_for('page_index')}}> Retour a accueil</a>
 </body>
 </html>
