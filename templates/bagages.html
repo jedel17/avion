@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bagages</title>
+</head>
+<body>
+<h1>enregistrement des bagages</h1>
+
+<h2> Vos coordonnées</h2>
+
+<p>
+
+<h1> Enregistrement d'un passager</h1>
+
+<form method="POST" id="form_1">
+    <div class="form-example">
+        <label for="passportid">N° passeport: </label>
+        <input type="text" name="passeportid" id="passportid" required/>
+    </div>
+    <div>
+        <label for="name">Nom: </label>
+        <input type="text" name="name" id="name">
+    </div>
+    <div>
+        <label for="firstname">Prenom: </label>
+        <input type="text" name="firstname" id="firstname">
+    </div>
+    <div>
+        <label for="poid">Poid bagage: </label>
+        <input type="number" name="poid" id="poid">
+    </div>
+    <div>
+        <button type="submit" id='button_save' name="button_save">Enregistrer</button>
+        <button type="submit" id='button_cancel' name="button_cancel">Annuler</button>
+
+    </div>
+</form>
+</body>
+</html>

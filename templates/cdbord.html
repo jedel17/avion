@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commandant de bord</title>
+</head>
+<body>
+
+
+<h2>Liste des personnes</h2>
+{% if personnes %}
+    {% for qqun in personnes %}
+        <p>n° passeport: {{qqun['passeportid'] }}<br>
+            nom du passager: {{ qqun['name'] }}<br>
+            prénom du passager: {{ qqun['firstname'] }}<br>
+            poids du bagage: {{ qqun['poid'] }}<br></p>
+
+    {% endfor %}
+{% endif %}
+
+<a href={{url_for('page_index')}}> Retour a accueil</a>
+</body>
+</html>
