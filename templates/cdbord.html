@@ -9,26 +9,34 @@
 
 
 <h2>Liste des personnes enregistrées</h2>
-{% if personnes %}
-    {% for qqun in personnes %}
-        <p>n° passeport: {{qqun['passeportid'] }}<br>
-            nom du passager: {{ qqun['name']}}<br>
-            prénom du passager: {{ qqun['firstname'] }}<br>
-            poids du bagage: {{ qqun['poid'] }}<br>
-
-
+{% if passagers %}
+    {% for passager in passagers %}
+        <p>n° passeport: {{passager['passeportid'] }}<br>
+            nom du passager: {{ passager['name']}}<br>
+            prénom du passager: {{ passager['firstname'] }}<br>
+            poids du bagage: {{ passager['poid'] }}<br>
     {% endfor %}
+
 {% endif %}
 
-<h2> Liste des personnes embarquées</h2><br><br>
+{% if poid %}
+<h1>Poid total embarqué:  </h1> <h1>{{poid}}</h1>
+{% endif %}
+
+
+
+<h2> Liste des passagers embarques</h2>
 
 {% if data2 %}
-    {% for individu in data2 %}
-        n° passeport: {{individu['passeportid']}},a embarque
+    {% for qqun in passagers %}
+        <p>n° passeport: {{qqun['passeportid'] }}<br>
+
+
     {% endfor %}
 {% endif %}
 
-<br>
+
+
 <a class="lien" href={{url_for('page_index')}}> Retour a accueil</a>
 </body>
 </html>

@@ -4,7 +4,7 @@ app = Flask (__name__)
 
 passagers = []
 liste=[]
-embarque=[]
+
 
 
 @app.route('/')
@@ -13,29 +13,37 @@ def page_index ():
 
 @app.route('/cdbord')
 def page_cdbord():
-    return render_template('cdbord.html',personnes=liste,data2=passagers)
+    poidtotal = 0
+    for passager in passagers:  # on parcours la liste des passagers
+        poidtotal = poidtotal + int(passager['poid'])# a partir du poids du bagage du passager je determine le poids total de bagage
+    return render_template('cdbord.html',passagers=passagers,poid=poidtotal)
 
 @app.route('/embarquement', methods=['GET', 'POST'])
 def page_embarquement():
     if request.method == 'POST':
-        global passagers
-        data = request.form.to_dict()
-        if 'btn1' in data:
-            passagers.append(data)
-            print(passagers)
-            return redirect(url_for('page_cdbord'))
-            return render_template('cdbord.html')
-    return render_template('embarquement.html')
+        data2 = request.form.to_dict()
+        passeport_identifiant= "non"
+        for passager in passagers:  # on parcours la liste des passagers
+            if passager['passeport'] == formulaire['passeportid']:  # si on trouve le passeport
+                embarque =="oui"  # le passager a embarqué
+                passeport_identifiant = "oui"  # on a trouvé le passeport
 
+
+        if passeport_identifiant=="oui":  # si on atrouvé le passeport
+            return redirect(url_for('page_index'))  # on redirige vers la page d'acceuil
+        else:
+            return redirect(url_for('page_errpassport'))  # sinon on redirige vers l'erreur passeport
+
+        return render_template('cdbord.html')
 
 @app.route('/bagages', methods=['GET', 'POST'])
 def page_bagages():
     if request.method == 'POST':  # si on recoit des données de formulaires html
-        global liste
+        global passagers
         data = request.form.to_dict()  # decode les donnees du formulaire html dans un dictionnaire
         if 'button_save' in data:
-            liste.append(data)
-            print(liste)
+            passagers.append(data)
+            print(passagers)
         # redirige vers la page commandant de bord
         return redirect(url_for('page_cdbord'))
     return render_template('bagages.html')
