@@ -15,12 +15,13 @@
             nom du passager: {{ passager['name']}}<br>
             prénom du passager: {{ passager['firstname'] }}<br>
             poids du bagage: {{ passager['poid'] }}<br>
+            embarqué : {{passager['embarque']}}<br>
     {% endfor %}
 
 {% endif %}
 
 {% if poid %}
-<h1>Poid total embarqué:  </h1> <h1>{{poid}}</h1>
+<h1>Poid total embarqué:  </h1> <h1>{{poid}} KG</h1>
 {% endif %}
 
 
